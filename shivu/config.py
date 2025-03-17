@@ -1,24 +1,26 @@
-class Config(object):
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class Config:
     LOGGER = True
-
-    # Get this value from my.telegram.org/apps
-    OWNER_ID = "5650073623"
-    sudo_users = "5650073623"
-    GROUP_ID = "-1002335396984"
-    TOKEN = "7850896694:AAFr8xYWn158CZ97FXE8cO5r8QM6DWWxjd4"
-    mongo_url = "mongodb+srv://enam:enam2025@cluster0.rploi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    PHOTO_URL = ["https://i.imgur.com/ErTVdOY.jpeg"]
-    SUPPORT_CHAT = "@maKorachatAccess"
-    UPDATE_CHAT = "@makoraUpdate"
-    BOT_USERNAME = "@makorA_bot"
-    CHARA_CHANNEL_ID = "-1002493620336"
-    api_id = "21831396"
-    api_hash = "40dee31c5c60d66363c3837b7f69de89"
-
     
-class Production(Config):
-    LOGGER = True
+    # Configuration depuis les variables d'environnement
+    OWNER_ID = os.getenv("OWNER_ID")
+    sudo_users = os.getenv("OWNER_ID") # même que OWNER_ID par défaut
+    TOKEN = os.getenv("BOT_TOKEN")
+    mongo_url = os.getenv("MONGO_URL")
+    PHOTO_URL = ["https://i.imgur.com/ErTVdOY.jpeg"]  # vous pouvez garder ceci en dur ou le déplacer dans .env
+    SUPPORT_CHAT = os.getenv("SUPPORT_CHAT")
+    UPDATE_CHAT = os.getenv("UPDATE_CHAT")
+    BOT_USERNAME = os.getenv("BOT_USERNAME")
+    CHARA_CHANNEL_ID = os.getenv("CHARA_CHANNEL_ID")
+    api_id = os.getenv("API_ID")
+    api_hash = os.getenv("API_HASH")
 
+class Production(Config):
+    LOGGER = False
 
 class Development(Config):
     LOGGER = True
